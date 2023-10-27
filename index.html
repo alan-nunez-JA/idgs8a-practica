@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo">Index</h1>
+    <button>Click</button>
+    <button onclick="myfunction()">Boton Agregar</button>
+    <button onclick="myfunctionDelete()">Boton Borrar</button>
+    <input type="email" id="email" oninput="handler()"/>
+    <button onclick="validarEmail()">Boton</button>
+    <p id="Validacion"></p>
+    <script>
+        function myfunction(){
+            // var input = document.getElementById("password")
+            // document.getElementById("demo").innerHTML = input.value
+            // document.getElementById("demo").style.color = "red"
+
+            var div = document.createElement("div")
+            var title = document.getElementById("demo")
+            div.innerHTML = "Elemento Nuevo"
+            title.appendChild(div)
+            div.addEventListener("click", handler)
+            div.addEventListener("click", handlerRemove)
+        }
+
+        function myfunctionDelete(){
+            var title = document.getElementById("demo")
+            var parent = title.parentNode
+            parent.removeChild(title)
+        }
+
+        function handler(e){
+            // var input = document.getElementById("email")
+            // document.getElementById("demo").innerHTML = input.value
+            console.log(e)
+        }
+
+        function handlerRemove(e){
+            var div = e.target.parentNode
+            div.removeChild(e.target)
+        }
+
+        function validarEmail(){
+            var email = document.getElementById("email")
+            if (email.value.match(new RegExp('^(.+)@(\\S+)$'))){
+                console.log("Email Valido")
+                document.getElementById("Validacion").innerHTML = "Email Valido"
+                document.getElementById("Validacion").style.color = "green"
+            }
+            else{
+                console.log("Email No Valido")
+                document.getElementById("Validacion").innerHTML = "Email No Valido"
+                document.getElementById("Validacion").style.color = "red"
+            }
+        }
+
+        function validar(expresion, campo){
+            var idcampo = campo.id
+            if(expresion.match(campo.value)){
+                console.log("Si " +campo, idcampo)
+                return true
+            }
+            else{
+                console.log()
+            }
+        }
+
+    </script>
+</body>
+</html>
